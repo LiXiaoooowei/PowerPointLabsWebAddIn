@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+
+  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+
+  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+  <Id>c2f97cb4-1d2d-4755-92ab-a9b103b8e5a0</Id>
+
+  <!--Version. Updates from the store only get triggered if there is a version change. -->
+  <Version>1.0.0.0</Version>
+  <ProviderName>[Provider name]</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
+  <DisplayName DefaultValue="PPTLabWebAddIn" />
+  <Description DefaultValue="PPTLabWebAddIn"/>
+  <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
+  <IconUrl DefaultValue="~remoteAppUrl/Images/Button32x32.png" />
+
+  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+  <AppDomains>
+    <AppDomain>AppDomain1</AppDomain>
+    <AppDomain>AppDomain2</AppDomain>
+    <AppDomain>AppDomain3</AppDomain>
+  </AppDomains>
+  <!--End Basic Settings. -->
+
+  <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
+  <Hosts>
+    <Host Name="Presentation" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="~remoteAppUrl/AnimationsPage.html" />
+  </DefaultSettings>
+  <!-- End TaskPane Mode integration.  -->
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <!-- Begin Add-in Commands Mode integration. -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+
+    <!-- The Hosts node is required. -->
+    <Hosts>
+      <!-- Each host can have a different set of commands. -->
+      <!-- Excel host is Workbook, Word host is Document, and PowerPoint host is Presentation. -->
+      <!-- Make sure the hosts you override match the hosts declared in the top section of the manifest. -->
+      <Host xsi:type="Presentation">
+        <!-- Form factor. Currently only DesktopFormFactor is supported. -->
+        <DesktopFormFactor>
+          <!--"This code enables a customizable message to be displayed when the add-in is loaded successfully upon individual install."-->
+          <GetStarted>
+            <!-- Title of the Getting Started callout. The resid attribute points to a ShortString resource -->
+            <Title resid="PPTLabs.GetStarted.Title"/>
+
+            <!-- Description of the Getting Started callout. resid points to a LongString resource -->
+            <Description resid="PPTLabs.GetStarted.Description"/>
+
+            <!-- Points to a URL resource which details how the add-in should be used. -->
+            <LearnMoreUrl resid="PPTLabs.GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <!-- Function file is a HTML page that includes the JavaScript where functions for ExecuteAction will be called. 
+            Think of the FunctionFile as the code behind ExecuteFunction. -->
+          <FunctionFile resid="PPTLabs.DesktopFunctionFile.Url" />
+
+          <!-- PrimaryCommandSurface is the main Office Ribbon. -->
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <!-- Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab. -->
+            <CustomTab id="PPTLabs.TabHome">
+              <!-- Ensure you provide a unique id for the group. Recommendation for any IDs is to namespace using your company name. -->
+              <Group id="PPTLabs.Group1">
+                <!-- Label for your group. resid must point to a ShortString resource. -->
+                <Label resid="PPTLabs.Group1Label" />
+                <!-- Icons. Required sizes 16,32,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX. -->
+                <!-- Use PNG icons. All URLs on the resources section must use HTTPS. -->
+                <Icon>
+                  <bt:Image size="16" resid="PPTLabs.AnimationLab-16" />
+                  <bt:Image size="32" resid="PPTLabs.AnimationLab-32" />
+                  <bt:Image size="80" resid="PPTLabs.AnimationLab-80" />
+                </Icon>
+
+                <!-- Control. It can be of type "Button" or "Menu". -->
+                <Control xsi:type="Menu" id="PPTLabs.AnimationLab">
+                  <Label resid="PPTLabs.AnimationLab.Label" />
+                  <Supertip>
+                    <!-- ToolTip title. resid must point to a ShortString resource. -->
+                    <Title resid="PPTLabs.AnimationLab.Label" />
+                    <!-- ToolTip description. resid must point to a LongString resource. -->
+                    <Description resid="PPTLabs.AnimationLab.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="PPTLabs.ColorsLab-16" />
+                    <bt:Image size="32" resid="PPTLabs.ColorsLab-32" />
+                    <bt:Image size="80" resid="PPTLabs.ColorsLab-80" />
+                  </Icon>
+                  <Items>
+                    <Item id="Shapes">
+                      <Label resid="PPTLabs.AnimationLab.Shapes"></Label>
+                      <Supertip>
+                        <!-- ToolTip title. resid must point to a ShortString resource. -->
+                        <Title resid="PPTLabs.AnimationLab.Label" />
+                        <!-- ToolTip description. resid must point to a LongString resource. -->
+                        <Description resid="PPTLabs.AnimationLab.Tooltip" />
+                      </Supertip>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>Animation.Shapes</TaskpaneId>
+                        <SourceLocation resid="PPTLabs.AnimationsLab.Url" />
+                      </Action>
+                    </Item>
+                  </Items>
+                </Control>
+              </Group>
+              <Group id="PPTLabs.Group2">
+                <!-- Label for your group. resid must point to a ShortString resource. -->
+                <Label resid="PPTLabs.Group2Label" />
+                <!-- Icons. Required sizes 16,32,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX. -->
+                <!-- Use PNG icons. All URLs on the resources section must use HTTPS. -->
+                <Icon>
+                  <bt:Image size="16" resid="PPTLabs.ColorsLab-16" />
+                  <bt:Image size="32" resid="PPTLabs.ColorsLab-32" />
+                  <bt:Image size="80" resid="PPTLabs.ColorsLab-80" />
+                </Icon>
+
+                <!-- Control. It can be of type "Button" or "Menu". -->
+                <Control xsi:type="Button" id="PPTLabs.ColorLab">
+                  <Label resid="PPTLabs.ColorLab.Label" />
+                  <Supertip>
+                    <!-- ToolTip title. resid must point to a ShortString resource. -->
+                    <Title resid="PPTLabs.AnimationLab.Label" />
+                    <!-- ToolTip description. resid must point to a LongString resource. -->
+                    <Description resid="PPTLabs.AnimationLab.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="PPTLabs.AnimationLab-16" />
+                    <bt:Image size="32" resid="PPTLabs.AnimationLab-32" />
+                    <bt:Image size="80" resid="PPTLabs.AnimationLab-80" />
+                  </Icon>
+
+                  <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <!-- Provide a URL resource id for the location that will be displayed on the task pane. -->
+                    <SourceLocation resid="PPTLabs.ColorLab.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="PPTLabs.CustomTabLabel"/>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <!-- You can use resources across hosts and form factors. -->
+    <Resources>
+      <bt:Images>
+        <bt:Image id="PPTLabs.AnimationLab-16" DefaultValue="~remoteAppUrl/Images/AnimationLab-16.png" />
+        <bt:Image id="PPTLabs.AnimationLab-32" DefaultValue="~remoteAppUrl/Images/AnimationLab-32.png" />
+        <bt:Image id="PPTLabs.AnimationLab-80" DefaultValue="~remoteAppUrl/Images/AnimationLab-80.png" />
+        <bt:Image id="PPTLabs.ColorsLab-16" DefaultValue="~remoteAppUrl/Images/ColorsLab-16.png" />
+        <bt:Image id="PPTLabs.ColorsLab-32" DefaultValue="~remoteAppUrl/Images/ColorsLab-32.png" />
+        <bt:Image id="PPTLabs.ColorsLab-80" DefaultValue="~remoteAppUrl/Images/ColorsLab-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="PPTLabs.DesktopFunctionFile.Url" DefaultValue="~remoteAppUrl/Functions/FunctionFile.html" />
+        <bt:Url id="PPTLabs.AnimationsLab.Url" DefaultValue="~remoteAppUrl/AnimationsPage.html" />
+        <bt:Url id="PPTLabs.ColorLab.Url" DefaultValue="~remoteAppUrl/ColorPage.html" />
+        <bt:Url id="PPTLabs.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+      </bt:Urls>
+      <!-- ShortStrings max characters==125. -->
+      <bt:ShortStrings>
+        <bt:String id="PPTLabs.AnimationLab.Label" DefaultValue="Animation" />
+        <bt:String id="PPTLabs.ColorLab.Label" DefaultValue="Color" />
+        <bt:String id="PPTLabs.Group1Label" DefaultValue="Animations" />
+        <bt:String id="PPTLabs.Group2Label" DefaultValue="Formatting" />
+        <bt:String id="PPTLabs.GetStarted.Title" DefaultValue="Get started with your PPTLabs add-in!" />
+        <bt:String id="PPTLabs.CustomTabLabel" DefaultValue="PPTLabs" />
+        <bt:String id="PPTLabs.AnimationLab.Shapes" DefaultValue="Shapes" />
+      </bt:ShortStrings>
+      <!-- LongStrings max characters==250. -->
+      <bt:LongStrings>
+        <bt:String id="PPTLabs.AnimationLab.Tooltip" DefaultValue="Use AnimationLab to add animations to your slide easily." />
+        <bt:String id="PPTLabs.GetStarted.Description" DefaultValue="Your PPTLabs add-in loaded succesfully.." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  <!-- End Add-in Commands Mode integration. -->
+
+</OfficeApp>
