@@ -78,9 +78,9 @@
                 <!-- Icons. Required sizes 16,32,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX. -->
                 <!-- Use PNG icons. All URLs on the resources section must use HTTPS. -->
                 <Icon>
-                  <bt:Image size="16" resid="PPTLabs.AnimationLab-16" />
-                  <bt:Image size="32" resid="PPTLabs.AnimationLab-32" />
-                  <bt:Image size="80" resid="PPTLabs.AnimationLab-80" />
+                  <bt:Image size="16" resid="PPTLabs.ColorsLab-16" />
+                  <bt:Image size="32" resid="PPTLabs.ColorsLab-32" />
+                  <bt:Image size="80" resid="PPTLabs.ColorsLab-80" />
                 </Icon>
 
                 <!-- Control. It can be of type "Button" or "Menu". -->
@@ -93,9 +93,9 @@
                     <Description resid="PPTLabs.AnimationLab.Tooltip" />
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="PPTLabs.ColorsLab-16" />
-                    <bt:Image size="32" resid="PPTLabs.ColorsLab-32" />
-                    <bt:Image size="80" resid="PPTLabs.ColorsLab-80" />
+                    <bt:Image size="16" resid="PPTLabs.AnimationLab-16" />
+                    <bt:Image size="32" resid="PPTLabs.AnimationLab-32" />
+                    <bt:Image size="80" resid="PPTLabs.AnimationLab-80" />
                   </Icon>
                   <Items>
                     <Item id="Shapes">
@@ -109,6 +109,42 @@
                       <Action xsi:type="ShowTaskpane">
                         <TaskpaneId>Animation.Shapes</TaskpaneId>
                         <SourceLocation resid="PPTLabs.AnimationsLab.Url" />
+                      </Action>
+                    </Item>
+                    <Item id="AnimateInSlide">
+                      <Label resid="PPTLabs.AnimateInSlideButton"></Label>
+                      <Supertip>
+                        <!-- ToolTip title. resid must point to a ShortString resource. -->
+                        <Title resid="PPTLabs.AnimationLab.Label" />
+                        <!-- ToolTip description. resid must point to a LongString resource. -->
+                        <Description resid="PPTLabs.AnimationLab.Tooltip" />
+                      </Supertip>
+                      <Action xsi:type="ExecuteFunction">
+                        <FunctionName>animateInSlide</FunctionName>
+                      </Action>
+                    </Item>
+                    <Item id="AddAnimationSlide">
+                      <Label resid="PPTLabs.AddAnimationSlideButton"></Label>
+                      <Supertip>
+                        <!-- ToolTip title. resid must point to a ShortString resource. -->
+                        <Title resid="PPTLabs.AnimationLab.Label" />
+                        <!-- ToolTip description. resid must point to a LongString resource. -->
+                        <Description resid="PPTLabs.AnimationLab.Tooltip" />
+                      </Supertip>
+                      <Action xsi:type="ExecuteFunction">
+                        <FunctionName>addAnimationSlide</FunctionName>
+                      </Action>
+                    </Item>
+                    <Item id="Settings">
+                      <Label resid="PPTLabs.AnimationSettingsButton"></Label>
+                      <Supertip>
+                        <!-- ToolTip title. resid must point to a ShortString resource. -->
+                        <Title resid="PPTLabs.AnimationLab.Label" />
+                        <!-- ToolTip description. resid must point to a LongString resource. -->
+                        <Description resid="PPTLabs.AnimationLab.Tooltip" />
+                      </Supertip>
+                      <Action xsi:type="ExecuteFunction">
+                        <FunctionName>openSettingsDialog</FunctionName>
                       </Action>
                     </Item>
                   </Items>
@@ -135,9 +171,9 @@
                     <Description resid="PPTLabs.AnimationLab.Tooltip" />
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="PPTLabs.AnimationLab-16" />
-                    <bt:Image size="32" resid="PPTLabs.AnimationLab-32" />
-                    <bt:Image size="80" resid="PPTLabs.AnimationLab-80" />
+                    <bt:Image size="16" resid="PPTLabs.ColorsLab-16" />
+                    <bt:Image size="32" resid="PPTLabs.ColorsLab-32" />
+                    <bt:Image size="80" resid="PPTLabs.ColorsLab-80" />
                   </Icon>
 
                   <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
@@ -180,6 +216,9 @@
         <bt:String id="PPTLabs.GetStarted.Title" DefaultValue="Get started with your PPTLabs add-in!" />
         <bt:String id="PPTLabs.CustomTabLabel" DefaultValue="PPTLabs" />
         <bt:String id="PPTLabs.AnimationLab.Shapes" DefaultValue="Shapes" />
+        <bt:String id="PPTLabs.AnimateInSlideButton" DefaultValue="Animate in Slide" />
+        <bt:String id="PPTLabs.AddAnimationSlideButton" DefaultValue="Add Animation Slide" />
+        <bt:String id="PPTLabs.AnimationSettingsButton" DefaultValue="Settings" />
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
